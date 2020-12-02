@@ -1,0 +1,240 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">活动信息</h3>
+                </div>
+                <div class="card-body" id="card-body" style="">
+                    <div class="my_dataTables_filter">
+                        <div class="span6" >
+                            <button type="button" id="add_button" class="search_button btn">新增</button>
+                            <select id="searcy_type" class="search_type">
+                                <option value="text">内容</option>
+                                <option value="url">链接地址</option>
+                                <option value="img">图片地址</option>
+                            </select>
+                            <input id="search_key" class="search_space"></input>
+                            <button type="button" id="search_button" class="search_button btn">搜索</button>
+                        </div>
+                    </div>
+                    <table id="oper-demo" class="table table-bordered table-hover dataTable dtr-inline collapsed"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+    let activityDataTable = null;
+    let searchMap = {}; // 查条件 "plateNumber":"川A320"
+    // 重新渲染table
+    function search() {
+        searchMap = {}
+        let searchString = $("#search_key").val();
+        let option = $("#searcy_type").val();
+        searchMap[option] = searchString;
+        console.log("searchMap---", searchMap)
+        newMyDataTable()
+    }
+
+    // -------------------------start---------------------------------------
+
+    $(()=>{
+
+
+        //  进入页面去请求数
+        newMyDataTable();
+        $("#search_button").click(function () {
+            search();
+        });
+        $("#search_key").keydown(function (e) {
+            if (e.keyCode == 13) {
+                search();
+            }
+        })
+        // ***********************************************************
+
+        // 编辑
+        $('#oper-demo').on("click", "button#editRow", () => {
+            console.log("你点击了编辑按钮！")
+        })
+        // 新增
+        $('#card-body').on("click", "button#add_button", () => {
+            console.log("你点击了新增按钮！")
+        })
+        // 删除
+        $('#oper-demo').on("click", "button#deleteRow", (e) => {
+            // 二次确认
+            $("#modalContent").html($("#deleteView").html());
+            $("#myModal").modal('show')
+
+            console.log("进入删除！！！！！")
+
+            let rowIndex = $(e.currentTarget).parents("tr").index(); // 0
+            // 得id
+            let id = $("#oper-demo")[0].tBodies[0].rows[rowIndex].cells[0].innerText;
+            // 传递
+            $("#deleteBtn")[0].dataset.id = id;
+
+        })
+    })
+
+    // -------------------------end-----------------------------------------
+
+
+    //表格渲染 data为二维数组
+    function renderTable(searchMap) {
+        activityDataTable = $('#oper-demo').DataTable({
+            paging: true, // 分页
+            lengthChange: false, //是否允许用户改变表格每页显示的记录数
+            iDisplayLength: 6, // 默认条目数
+            searching: false, // 禁搜索
+            ordering: false,  // 排序开关
+            info: true, // 是否显示左下角
+            responsive: true,// 是否初始隐藏折叠按钮
+            autoWidth: false, //禁用自动调整列宽
+            stateSave: false, //状态保存，再次加载页面时还原表格状态
+            serverSide: true, //启用服务器端分页
+            pagingType: "simple_numbers",
+            //--------------------------------------
+            ajax: function (data, callback, settings) {
+                // console.log("data---",data)
+                //封装请求参数
+                let param = {};
+                param.pageSize = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
+                param.currentPage = (data.start / data.length) + 1;//当前页码
+                param.searchMap = searchMap
+                // console.log("param: ", param);
+                //ajax请求数据
+                $.ajax({
+                    type: "POST",
+                    url: "/activity/findPage",
+                    cache: false, //禁用缓存
+                    data: JSON.stringify(param), //传入组装的参数
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (res) {
+                        let returnData = {};
+                        let result = res.data;
+                        // console.log("res****", res)
+                        returnData.draw = data.draw;//这里直接自行返回了draw计数器,应该由后台返回
+                        returnData.recordsTotal = result.totalRows;//返回数据全部记录
+                        returnData.recordsFiltered = result.totalRows;//后台不实现过滤功能，每次查询均视作全部结果
+                        returnData.data = toDatatableArray(result.items);//返回的数据列表
+                        // console.log("returnData:----", returnData)
+                        callback(returnData);
+
+                    }
+                });
+            },
+            //--------------------------------------
+            dom: '<"pull-left"B>ft<"pull-left"i>p',
+            buttons: [
+                'excel'
+            ],
+            columns: [{
+                title: "id"
+                // className:"importHidden"
+            },
+                {
+                    title: '序号',
+                    className: 'text-center whiteSpace',
+                    render: function (data, type, row, meta) {
+                        return meta.row + 1 + meta.settings._iDisplayStart;
+                    }
+                },
+                {
+                    title: "内容",
+                },
+                {
+                    title: "链接地址"
+                },
+                {
+                    title: "图片地址",
+                },
+                {
+                    title: '操作',
+                    render: function (data, type, row, meta) {
+                        return "<button id='editRow' class='btn' type='button'><i class='far fa-edit'></i></button><button data-target='#myModal' id='deleteRow'   class='btn' type='button'  ><i class='far fa-trash-alt'></i></button>";
+                    }
+                }
+            ],
+            language: {
+                "buttons": {
+                    "excel": "导出Excel"
+                },
+                "sProcessing": "处理中...",
+                "buttons.copy": "复制",
+                "buttons.print": "打印",
+                "sLengthMenu": "_MENU_",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                },
+                "oAria": {
+                    "sSortAscending": ": 以升序排列此列",
+                    "sSortDescending": ": 以降序排列此列"
+                }
+            }
+        });
+    }
+
+    // datatables end
+
+    // 请求过来的数据进行二次封装为datatables可识别
+    function toDatatableArray(result) {
+        let resultData = [];
+        result.forEach(v => {
+            let item = [];
+            item.push(v.id, "", v.text, v.url, v.img)
+            resultData.push(item)
+        })
+        return resultData;
+    }
+
+    // 刷新
+    function newMyDataTable() {
+        if (activityDataTable) {
+            activityDataTable.destroy()
+            $("#oper-demo").empty()
+        }
+        renderTable(searchMap)
+    }
+
+    // 二次确认后的操作---------------
+    // 删除
+    function deleteConfirm(dom) {
+        let id =  dom.dataset.id;
+        // let param = {id};
+        // axios.delete("/carlnfo/delete",param).then(res=>{
+        //     console.log(res)
+        // })
+        $("#myModal").modal('hide');
+    }
+</script>
+<template id="deleteView">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    </div>
+    <div class="modal-body">您确定要删除吗？</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" id="deleteBtn" class="btn btn-primary" data-id = "-1"  onclick="deleteConfirm(this)">确定</button>
+    </div>
+</template>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+
+<body>
+</body>
+    <div class="main-card mb-3 card">
+        <div class="card-body">
+            <div style="display: flex;flex-direction: row;justify-content: flex-end">
+                <button style="margin-right: 2vw" class="btn btn-primary" data-toggle="collapse" href="#collapseExample123" onclick="searchButton(this)">查询</button>
+                <button class="btn btn-primary">导出</button>
+            </div>
+            <div class="collapse" id="collapseExample123">
+                <form action="#">
+                    <div class="form-row">
+                        <div class="col-md-4">
+                            <div class="position-relative form-group"><label for="exampleCity" class="">站点名称</label><input name="city" id="exampleCity" type="text" class="form-control"></div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button class="mt-2 btn btn-primary" id="search">搜索</button>
+                        <button class="mt-2 btn btn-primary" id="clean">重置</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function searchButton(e){
+        if(e.innerHTML === "查询"){
+            e.innerHTML = "隐藏"
+        }else{
+            e.innerHTML = "查询"
+        }
+    }
+    $("#search").click(function () {
+        $.ajax({
+            type: "get",
+            url: "/station/findStationList",
+            data: {},
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+            }
+        })
+    });
+    $("#clean").click(function () {
+        $('input').val("");
+    });
+</script>
+</html>

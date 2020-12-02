@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./login.css">
+  <link rel="stylesheet" href="./main.css">
+  <title>柠檬出行</title>
+</head>
+
+<body>
+  <div id="login">
+    <div class="mainCon">
+      <div class="conLeft">
+        <img src="./assets/images/login-logo.png" alt="">
+        <img src="./assets/images/login-icon.png" alt="">
+        <p>柠檬出行，更便捷的出行方式</p>
+      </div>
+      <div class="conRight">
+        <p>欢迎登陆</p>
+
+
+        <div class="inputCon">
+          <div class="card-header card-header-tab-animation">
+            <ul class="nav nav-justified">
+              <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-0" class="nav-link show active">账号密码登录</a></li>
+              <li class="nav-item"><a data-toggle="tab" href="#tab-eg115-1" class="nav-link show">手机号登录</a></li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <div class="tab-content">
+              <div class="tab-pane show active" id="tab-eg115-0" role="tabpanel">
+                <input placeholder="请输入用户名" type="text" class="form-control inputMargin">
+                <input placeholder="请输入密码" type="password" class="form-control">
+              </div>
+              <div class="tab-pane show" id="tab-eg115-1" role="tabpanel">
+                <input placeholder="请输入手机号" type="text" class="form-control inputMargin">
+                <div class="VerificationCon">
+                  <input placeholder="请输入验证码" type="text" class="short">
+
+                  <button class="mb-2 mr-2 btn-transition btn btn-outline-secondary VerificationBtn">获取验证码
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="loginBtn">登录</button>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="./assets/scripts/main.js"></script>
+</body>
+
+</html>

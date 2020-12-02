@@ -1,0 +1,20 @@
+server:
+  port: 80
+  address: 0.0.0.0
+
+spring:
+  datasource:
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.108.216.252:3306/lemon?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    password: 321
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-not-delete-value: 0
+      logic-delete-value: 1
