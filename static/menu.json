@@ -1,0 +1,250 @@
+{
+  "flag": true,
+  "message": "执行成功",
+  "data": [
+    {
+      "menuTitle": "功能模块",
+      "id": 1,
+      "parentId": null,
+      "name": "基础信息管理",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-menu",
+      "ordering": 10,
+      "version": "2020-11-27T08:46:54.000+0000"
+    },
+    {
+      "id": 4,
+      "parentId": null,
+      "name": "车辆管理",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-car",
+      "ordering": 20,
+      "version": "2020-11-27T08:47:04.000+0000"
+    },
+    {
+      "id": 6,
+      "parentId": null,
+      "name": "站点管理",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-culture",
+      "ordering": 30,
+      "version": null
+    },
+    {
+      "id": 8,
+      "parentId": null,
+      "name": "线路管理",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-loop",
+      "ordering": 40,
+      "version": null
+    },
+    {
+      "id": 12,
+      "parentId": null,
+      "name": "班次管理",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-way",
+      "ordering": 50,
+      "version": null
+    },
+    {
+      "id": 16,
+      "parentId": null,
+      "name": "活动管理",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-target",
+      "ordering": 60,
+      "version": null
+    },
+    {
+      "id": 18,
+      "parentId": null,
+      "name": "消息推送",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-paper-plane",
+      "ordering": 70,
+      "version": null
+    },
+    {
+      "id": 20,
+      "parentId": null,
+      "name": "用户管理",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-id",
+      "ordering": 80,
+      "version": null
+    },
+    {
+      "id": 22,
+      "parentId": null,
+      "name": "订单管理",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-note2",
+      "ordering": 90,
+      "version": null
+    },
+    {
+      "id": 24,
+      "parentId": null,
+      "name": "系统管理",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-home",
+      "ordering": 100,
+      "version": null
+    },
+    {
+      "id": 2,
+      "parentId": 1,
+      "name": "banner管理",
+      "url": "pages/basicInformation/banner.html",
+      "icon": null,
+      "ordering": 101,
+      "version": "2020-11-30T01:38:43.000+0000"
+    },
+    {
+      "id": 3,
+      "parentId": 1,
+      "name": "公告管理",
+      "url": "pages/basicInformation/Announcement.html",
+      "icon": null,
+      "ordering": 102,
+      "version": "2020-11-30T01:38:47.000+0000"
+    },
+    {
+      "id": 5,
+      "parentId": 4,
+      "name": "车辆管理",
+      "url": "pages/carInfo/CarInfo.html",
+      "icon": null,
+      "ordering": 201,
+      "version": "2020-12-01T01:23:57.000+0000"
+    },
+    {
+      "id": 7,
+      "parentId": 6,
+      "name": "站点管理",
+      "url": "pages/station/Station.html",
+      "icon": null,
+      "ordering": 301,
+      "version": "2020-11-30T01:38:53.000+0000"
+    },
+    {
+      "id": 9,
+      "parentId": 8,
+      "name": "校园线路管理",
+      "url": ".html",
+      "icon": null,
+      "ordering": 401,
+      "version": "2020-11-30T01:38:56.000+0000"
+    },
+    {
+      "id": 10,
+      "parentId": 8,
+      "name": "城际线路管理",
+      "url": ".html",
+      "icon": null,
+      "ordering": 402,
+      "version": "2020-11-30T01:38:58.000+0000"
+    },
+    {
+      "id": 11,
+      "parentId": 8,
+      "name": "热门线路管理",
+      "url": ".html",
+      "icon": null,
+      "ordering": 403,
+      "version": "2020-11-30T01:39:01.000+0000"
+    },
+    {
+      "id": 13,
+      "parentId": 12,
+      "name": "校园线路班次管理",
+      "url": "pages/frequency/school.html",
+      "icon": null,
+      "ordering": 501,
+      "version": "2020-11-30T01:39:03.000+0000"
+    },
+    {
+      "id": 14,
+      "parentId": 12,
+      "name": "城际线路班次管理",
+      "url": "pages/frequency/frequency.html",
+      "icon": null,
+      "ordering": 502,
+      "version": "2020-11-30T01:39:06.000+0000"
+    },
+    {
+      "id": 15,
+      "parentId": 12,
+      "name": "热门线路班次管理",
+      "url": "pages/frequency/hot.html",
+      "icon": null,
+      "ordering": 503,
+      "version": "2020-11-30T01:39:07.000+0000"
+    },
+    {
+      "id": 17,
+      "parentId": 16,
+      "name": "活动管理",
+      "url": "pages/activity/Activity.html",
+      "icon": null,
+      "ordering": 601,
+      "version": null
+    },
+    {
+      "id": 19,
+      "parentId": 18,
+      "name": "消息推送",
+      "url": ".html",
+      "icon": null,
+      "ordering": 701,
+      "version": null
+    },
+    {
+      "id": 21,
+      "parentId": 20,
+      "name": "用户管理",
+      "url": "pages/test/User.html",
+      "icon": null,
+      "ordering": 801,
+      "version": null
+    },
+    {
+      "id": 23,
+      "parentId": 22,
+      "name": "订单管理",
+      "url": "pages/order/order.html",
+      "icon": null,
+      "ordering": 901,
+      "version": null
+    },
+    {
+      "id": 25,
+      "parentId": 24,
+      "name": "用户管理",
+      "url": ".html",
+      "icon": null,
+      "ordering": 1001,
+      "version": null
+    },
+    {
+      "id": 26,
+      "parentId": 24,
+      "name": "角色管理",
+      "url": ".html",
+      "icon": null,
+      "ordering": 1002,
+      "version": "2020-11-30T01:44:03.000+0000"
+    },
+    {
+      "id": 27,
+      "parentId": 24,
+      "name": "菜单权限管理\r\n",
+      "url": ".html",
+      "icon": null,
+      "ordering": 1003,
+      "version": null
+    }
+  ]
+}
