@@ -5,6 +5,129 @@
     <title>测试校验</title>
 </head>
 <body>
-<p>校验demo</p>
+
+<div class="card-body">
+    <h5 class="card-title">表单校验demo</h5>
+    <form class="needs-validation" novalidate="">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom01">只能为中文</label>
+                <input type="text" class="form-control" id="validationCustom01" placeholder="只能为中文" value="" required="required" pattern="[\u4e00-\u9fa5]+" >
+                <div class="valid-feedback">
+                    格式正确.
+                </div>
+                <div class="invalid-feedback">
+                    请输入正确的中文人名!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom02">手机号码</label>
+                <input type="text" class="form-control" id="validationCustom02" placeholder="手机号" value="" required="required" pattern="(13[0-9]|14[5|7]|15[0|1|2|3|4|5|6|7|8|9]|18[0|1|2|3|5|6|7|8|9])\d{8}">
+                <div class="valid-feedback">
+                    格式正确.
+                </div>
+                <div class="invalid-feedback">
+                    请输入正确的手机号!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom03">邮箱</label>
+                <input type="text" class="form-control" id="validationCustom03" placeholder="邮箱" aria-describedby="inputGroupPrepend" required="true" pattern="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
+                <div class="valid-feedback">
+                    格式正确.
+                </div>
+                <div class="invalid-feedback">
+                    请输入正确的邮箱!
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom04">民用车牌</label>
+                <input type="text" class="form-control" id="validationCustom04" placeholder="民用车牌" value="" required="required" pattern="[京津冀晋蒙辽吉黑沪苏浙皖闽赣鲁豫鄂湘粤桂琼川贵云渝藏陕甘青宁新使]{1}[A-Z]{1}[0-9a-zA-Z]{5}" >
+                <div class="valid-feedback">
+                    格式正确.
+                </div>
+                <div class="invalid-feedback">
+                    请输入正确的车牌!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom05">正整数</label>
+                <input type="text" class="form-control" id="validationCustom05" placeholder="正整数" value="" required="required" pattern="[1-9]\d*">
+                <div class="valid-feedback">
+                    格式正确.
+                </div>
+                <div class="invalid-feedback">
+                    请输入正确的正整数!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom06">身份证号</label>
+                <input type="text" class="form-control" id="validationCustom06" placeholder="身份证号" aria-describedby="inputGroupPrepend" required="true" pattern="\d{17}[\d|x]|\d{15}">
+                <div class="valid-feedback">
+                    格式正确.
+                </div>
+                <div class="invalid-feedback">
+                    请输入正确的身份证号!
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom07">网址</label>
+                <input type="text" class="form-control" id="validationCustom07" placeholder="网址" value="" required="required" pattern="^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+" >
+                <div class="valid-feedback">
+                    格式正确.
+                </div>
+                <div class="invalid-feedback">
+                    请输入正确的网址!
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="validationCustom08">QQ号</label>
+                <input type="text" class="form-control" id="validationCustom08" placeholder="QQ号" value="" required="required" pattern="[1-9]([0-9]{4,10})">
+                <div class="valid-feedback">
+                    格式正确.
+                </div>
+                <div class="invalid-feedback">
+                    请输入正确的QQ号!
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required="">
+                <label class="form-check-label" for="invalidCheck">
+                   确认以上输入无误.
+                </label>
+                <div class="invalid-feedback">
+                   提交前必须确认!
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">提交</button>
+    </form>
+
+    <script>
+        ;(function () {
+            // 需验证的表单
+            var forms = document.getElementsByClassName('needs-validation');
+            // 验证
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                // 点击提交时触发
+                form.addEventListener('submit', function(event) {
+                    // alert("监听submit成功！")
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }());
+
+    </script>
+</div>
 </body>
 </html>
