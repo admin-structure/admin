@@ -232,6 +232,13 @@
         }
 
 
+          $("#footer").load("./footer.html");
+          $("#content").load("./test/validator.html");
+          showContent = (page) => {
+              console.log(page);
+              $("#content").load(page);
+          }
+
 
 
 
