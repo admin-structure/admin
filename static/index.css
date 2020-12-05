@@ -63,7 +63,7 @@ ul li {
 }
 /*前进 后退 按钮*/
 #selectMove{
-    /*display: none;*/
+    display: none;
     height: 100%;
     width: 65px;
     position: absolute;
