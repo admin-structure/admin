@@ -2,14 +2,13 @@
 var showTabs = [];
 let indexObj = {
     url: "pages/test/validator.html",
-    name:"首页",
-    standup:true
+    name: "首页",
+    standup: true
 };
 showTabs.push(indexObj)
-
 $(function () {
     $.getJSON('./menu.json', function (data) {
-        console.log(data.data)
+        // console.log(data.data)
 
         var str1 = "";
         var str2 = "";
@@ -75,15 +74,48 @@ $(function () {
                 showTabs.push(submenuObj)
             }
             renderSubMenu(path);
+            isRightBtnShow()
+        }
+        //  前进后退选项是否显示
+        function isRightBtnShow(){
+            let innerW = $("#tabs").width();
+            let outerW = $("#tabParent").width();
+            if (innerW >= outerW) {
+                $("#selectMove").show()
+            }else {
+                $("#selectMove").hide()
+                $("#tabs").css("left", "0px")
+            }
         }
 
+        // 前进后退事件
+        let distance = 0;
+        $("#selectMove").on("click", "p", (e) => {
+            if (e.target == $("#selectMove>p:last")[0]) {
+                // 左 朝右动  看左边
+                distance += 100
+                if (distance >= 0) {
+                    distance = 0
+                }
+                $("#tabs").css("left", distance + "px")
+            } else {
+                // 右 看右边 朝左
+                distance -= 100
+                // 最多两倍长
+                if (Math.abs(distance) > $("#tabs").width()-100) {
+                    distance +=100
+                }
+                $("#tabs").css("left", distance + "px")
+            }
+        })
+
         // tabs事件
-        $("#tabs").on("click","li",(e)=>{
+        $("#tabs").on("click", "li", (e) => {
             let url = e.currentTarget.dataset.url;
-            if ($(e.currentTarget).find("p").last()[0] == e.target){
+            if ($(e.currentTarget).find("p").last()[0] == e.target) {
                 // 删
                 removeTabAndIframe(url)
-            }  else {
+            } else {
                 hideAllIframeShowActive(url)
                 activeTabShow(url)
             }
@@ -93,13 +125,13 @@ $(function () {
         // 删除
         function removeTabAndIframe(path) {
 
-            $("#content").find("iframe").each((i,v)=>{
-                if (v.dataset.url == path){
+            $("#content").find("iframe").each((i, v) => {
+                if (v.dataset.url == path) {
                     $(v).remove()
                 }
             })
-            $("#tabs").find("li").each((i,v)=>{
-                if (v.dataset.url == path){
+            $("#tabs").find("li").each((i, v) => {
+                if (v.dataset.url == path) {
                     if ($(v).hasClass("tabActive")) {
                         $("#tabs").find("li").eq(0).addClass("tabActive")
                         $("#content").find("iframe").eq(0).show()
@@ -108,12 +140,14 @@ $(function () {
                 }
             })
             // 数组也要去
-            for (let i = 0;i<showTabs.length;i++){
+            for (let i = 0; i < showTabs.length; i++) {
                 let item = showTabs[i];
-                if (item.url == path){
-                    showTabs.splice(i,1);
+                if (item.url == path) {
+                    showTabs.splice(i, 1);
                 }
             }
+            // 前进后退按钮是否隐藏
+            isRightBtnShow()
         }
 
         // 渲染
@@ -122,7 +156,7 @@ $(function () {
             // $("#content").html("")
             showTabs.forEach(v => {
                 if (v.standup) {
-                    let tab_s  = `<li data-url="${v.url}" class="tabActive"><p>${v.name}</p><p>&otimes;</p></li>`;
+                    let tab_s = `<li data-url="${v.url}" class="tabActive"><p>${v.name}</p><p>&otimes;</p></li>`;
                     if (v.name == "首页") {
                         tab_s = `<li data-url="${v.url}"><p>首页</p><p style="display: none"></p></li>`
                     }
@@ -136,11 +170,11 @@ $(function () {
             hideAllIframeShowActive(path)
             activeTabShow(path)
         }
-        
+
         // 是否存在
         function isExist(path) {
-            for (let i = 0; i<showTabs.length;i++){
-                if (showTabs[i].url == path){
+            for (let i = 0; i < showTabs.length; i++) {
+                if (showTabs[i].url == path) {
                     return true;
                 }
             }
@@ -157,16 +191,16 @@ $(function () {
                 }
             })
         }
+
         // 独显tab样式
         function activeTabShow(path) {
-            $("#tabs").find("li").each((i,v)=>{
+            $("#tabs").find("li").each((i, v) => {
                 $(v).removeClass("tabActive")
-                if (path == v.dataset.url){
+                if (path == v.dataset.url) {
                     $(v).addClass("tabActive")
                 }
             })
         }
-
 
 
     })

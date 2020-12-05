@@ -11,6 +11,7 @@ ul li {
     margin-bottom: 10px;
     border-radius: 5px;
     position: relative;
+    overflow: hidden;
 }
 
 /*::-webkit-scrollbar{*/
@@ -21,12 +22,14 @@ ul li {
     margin-top: 15px;
     padding-left: 0;
     position: absolute;
+    white-space: nowrap;
 }
 
 #tabs > li {
     height: 30px;
     box-sizing: border-box;
-    float: left;
+    /*float: left;*/
+    display: inline-block;
     margin-left: 5px;
     padding: 0 8px;
     cursor: pointer;
@@ -58,4 +61,28 @@ ul li {
     color: #3F6AD7 !important;
     background-color: #bbb !important;
 }
+/*前进 后退 按钮*/
+#selectMove{
+    /*display: none;*/
+    height: 100%;
+    width: 65px;
+    position: absolute;
+    right: 0;
+    z-index: 1000;
+    background-color: white;
+    padding-top: 15px;
+    background-color: #E5E7E9;
+}
 
+#selectMove>p{
+    height: 30px;
+    width: 30px;
+    float: right;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+}
+#selectMove>p:hover{
+    color: red;
+    font-weight: 700;
+}
