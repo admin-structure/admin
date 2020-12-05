@@ -16,6 +16,7 @@
   <!-- DataTables -->
   <link rel="stylesheet" href="./plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="./plugins/datatables-responsive/css/responsive.bootstrap4.css">
+  <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
@@ -149,7 +150,10 @@
       </div>
       <div class="app-main__outer">
         <div class="app-main__inner">
-          <div id="content"></div>
+           <div id="tabParent">
+               <ul id="tabs"></ul>
+           </div>
+          <div id="content" style="width: 100%;height: 100%;"></div>
         </div>
         <div id="footer" class="app-wrapper-footer">
         </div>
@@ -173,81 +177,7 @@
   <script src="./plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
   <script src="./plugins/datatables-buttons/js/buttons.html5.js"></script>
   <script src="./plugins/jszip/jszip.js"></script>
-
-  <script>
-    $(function () {
-      $.getJSON('./menu.json', function (data) {
-        console.log(data.data)
-
-        var str1 = "";
-        var str2 = "";
-        let result = data.data;
-        for (var i = 0; i < result.length; i++) {
-          if (result[i].url == null && result[i].menuTitle != null) {
-            str1 += `<li class="app-sidebar__heading">${result[i].menuTitle}</li>
-            <li>
-                  <a href="#">
-                  <i class="${result[i].icon}"></i>
-                  ${result[i].name}
-                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul class="mm-collapse">
-                  <li class="${result[i].id}">
-
-                  </li>
-                </ul>
-                </li>`
-            $(".dd").append(str1);
-            str1 = "";
-            id = `${result[i].parentId}`
-          }
-          else if (result[i].url == null) {
-            str1 += `
-            <li>
-                  <a href="#">
-                  <i class="${result[i].icon}"></i>
-                  ${result[i].name}
-                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul class="mm-collapse">
-                  <li class="${result[i].id}">
-
-                  </li>
-                </ul>
-                </li>`
-            $(".dd").append(str1);
-            str1 = "";
-            id = `${result[i].parentId}`
-          }
-          if (result[i].url != null) {
-            str2 += `
-                    <a onclick="showContent('${result[i].url}')" href="javascript:void(0);">
-                      <i class="metismenu-icon"></i>
-                      ${result[i].name}
-                    </a>
-                  `
-            $("." + `${result[i].parentId}`).append(str2);
-            str2 = "";
-          }
-        }
-
-
-          $("#footer").load("./footer.html");
-          $("#content").load("./test/validator.html");
-          showContent = (page) => {
-              console.log(page);
-              $("#content").load(page);
-          }
-
-
-
-
-      })
-    })
-
-
-
-  </script>
+<script src="./index.js"></script>
 </body>
 
 </html>
