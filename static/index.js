@@ -7,6 +7,7 @@ let indexObj = {
 };
 showTabs.push(indexObj)
 $(function () {
+    $.ajaxSettings.async = false;
     $.getJSON('./menu.json', function (data) {
         var str1 = "";
         var str2 = "";
