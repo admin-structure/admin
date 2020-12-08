@@ -8,8 +8,6 @@ let indexObj = {
 showTabs.push(indexObj)
 $(function () {
     $.getJSON('./menu.json', function (data) {
-        // console.log(data.data)
-
         var str1 = "";
         var str2 = "";
         let result = data.data;
@@ -28,7 +26,7 @@ $(function () {
                   </li>
                 </ul>
                 </li>`
-                $(".dd").append(str1);
+                $(".loadMenu").append(str1);
                 str1 = "";
                 id = `${result[i].parentId}`
             }
