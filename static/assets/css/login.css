@@ -2,7 +2,7 @@
 *{margin:0;padding:0;}
 #login {
   height: 1040px;
-  background-image: url("./assets/images/login-bg-1.png");
+  background-image: url("../images/login-bg-1.png");
   background-size: 100% 1040px;
   display: flex;
   align-items: center;
