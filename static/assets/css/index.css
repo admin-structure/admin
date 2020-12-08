@@ -33,7 +33,7 @@ ul li {
     margin-left: 5px;
     padding: 0 8px;
     cursor: pointer;
-    background-color: #ccc;
+    background-color: #39BCF0;
     color: white;
     border-radius: 5px;
 }
@@ -58,8 +58,8 @@ ul li {
     font-weight: 700;
 }
 .tabActive{
-    color: #3F6AD7 !important;
-    background-color: #bbb !important;
+    color: #fff !important;
+    background-color: #11A566 !important;
 }
 /*前进 后退 按钮*/
 #selectMove{
@@ -71,7 +71,7 @@ ul li {
     z-index: 1000;
     background-color: white;
     padding-top: 15px;
-    background-color: #E5E7E9;
+    background-color: #E0F3FF;
 }
 
 #selectMove>p{
@@ -81,8 +81,11 @@ ul li {
     text-align: center;
     line-height: 30px;
     cursor: pointer;
+    font-size: 20px;
+    color: #12A768;
 }
 #selectMove>p:hover{
     color: red;
+    font-size: 28px;
     font-weight: 700;
 }
