@@ -59,8 +59,12 @@ ul li {
     font-weight: 700;
 }
 .tabActive{
-    color: #fff !important;
-    background-color: #39BCF0 !important;
+    /*font-size: 20px !important;*/
+    font-weight: 700 !important;
+    color: #39BCF0 !important;
+    border: 1px solid #39BCF0 !important;
+    border-bottom: none !important;
+    background-color: #fff !important;
 }
 /*前进 后退 按钮*/
 #selectMove{
@@ -90,9 +94,9 @@ ul li {
     font-weight: 700;
 }
 .app-main__inner{
-    padding: 15px 15px 0 !important;
+    padding: 20px 20px 0 !important;
 }
 
 #content{
-    border-top: 5px solid #39BCF0;
+    /*border-top: 1px solid #39BCF0;*/
 }
