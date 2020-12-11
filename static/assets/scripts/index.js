@@ -76,7 +76,9 @@ $(function () {
       isRightBtnShow()
     }
     //  前进后退选项是否显示
-
+    window.onresize = function () {
+      isRightBtnShow()
+    }
     function isRightBtnShow() {
       let innerW = $("#tabs").width();
       let outerW = $("#tabParent").width();
@@ -102,7 +104,7 @@ $(function () {
         $("#tabs").css("left", distance + "px")
 
       }
-      if (e.target == $("#rightArrow")[0] && N + 200 >= w2) {
+      if (e.target == $("#rightArrow")[0] && N + 320 >= w2) {
         distance = parseInt(w1)
         $("#tabs").css("left", distance + "px")
       }

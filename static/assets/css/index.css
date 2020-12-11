@@ -8,12 +8,13 @@ ul li {
     padding: 0;
     margin: 0;
     background-color: #fff;
-    position: relative;
+    position: relative !important;
     overflow: hidden;
     border-top: 1px solid #D3D3D3;
     margin-top: 10px;
-
     margin-bottom: 10px;
+    border-bottom: 1px solid #EBEBEB;
+    z-index: 1 !important;
 }
 
 /*::-webkit-scrollbar{*/
@@ -22,8 +23,10 @@ ul li {
 #tabs {
     height: 50px;
     padding: 0 40px 0 20px;
-    position: absolute;
+    position: absolute !important;
     white-space: nowrap;
+    z-index: 999 !important;
+    top: 5px;
 }
 
 #tabs > li {
@@ -51,12 +54,12 @@ ul li {
     margin-top: -3px;
     float: right;
     font-size: 22px;
-
-
+    
+    
 }
 #tabs > li:hover{
-    color: #646464;
-    background-color: rgba(235,235,235,0.8);
+  color: #646464;
+  background-color: rgba(235,235,235,0.8);
 }
 #tabs > li > p:last-child:hover{
     color:#505050;
@@ -69,49 +72,51 @@ ul li {
     border: 1px solid #EBEBEB !important;
     border-bottom: none !important;
     background-color: #fff !important;
+    height: 40px !important;
 }
 /*前进 后退 按钮*/
 
 #leftArrow{
-    display: none;
-    width: 24px;
-    height: 34px;
-    position: absolute;
-    left: 0;
-    top: 20%;
-    z-index: 1000;
-    background-color: #BEBEBE;
-    text-align: center;
-    line-height: 34px;
-    cursor: pointer;
-    font-size: 20px;
-    color: #6E6E6E;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+  display: none;
+  width: 24px;
+  height: 34px;
+  position: absolute;
+  left: 0;
+  top: 20%;
+  z-index: 1000;
+  background-color: #BEBEBE;
+  text-align: center;
+  line-height: 34px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #6E6E6E;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 #rightArrow{
-    display: none;
-    width: 24px;
-    height: 34px;
-    position: absolute;
-    right: 0;
-    top: 20%;
-    z-index: 1000;
-    background-color: #BEBEBE;
-    text-align: center;
-    line-height: 34px;
-    cursor: pointer;
-    font-size: 20px;
-    color: #6E6E6E;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+  display: none;
+  width: 24px;
+  height: 34px;
+  position: absolute;
+  right: 0;
+  top: 20%;
+  z-index: 1000;
+  background-color: #BEBEBE;
+  text-align: center;
+  line-height: 34px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #6E6E6E;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 #rightArrow:hover,#leftArrow:hover{
-    color: #646464;
-    font-size: 22px;
+  color: #646464;
+  font-size: 22px;
 }
 .app-main__inner{
     padding:0 !important;
     background-color: #fff !important;
 }
+
