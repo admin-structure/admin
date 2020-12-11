@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>test</title>
+  <script type="text/javascript" src="../../plugins/timeSeleter/daterangepicker.js"></script>
+  <script type="text/javascript" src="../../plugins/timeSeleter/moment.js"></script>
+  <link rel="stylesheet" type="text/css" media="all" href="../../plugins/timeSeleter/daterangepicker-bs3.css" />
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <!-- Font Awesome -->
+  <!-- <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> -->
+
+  <!-- overlayScrollbars -->
+  <!--<link rel="stylesheet" href="../../plugins/adminlte/css/adminlte.css">-->
+
+  <!--******-->
+  <!-- DataTables -->
+  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.css">
+  <!-- <link rel="stylesheet" href="../../pages/test/demo.css" /> -->
+
+  <style>
+    i {
+      font-size: 16px;
+      margin-right: 5px;
+    }
+
+    .spacing {
+      margin-left: 14px;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    .main {
+      height: 100%;
+      padding: 0 50px;
+      background-color: #fff;
+    }
+
+    .main .pageTitle {
+      font-size: 20px;
+      padding: 15px 0;
+      border-bottom: 1px solid #D3D3D3;
+    }
+
+    .main label {
+      font-size: 18px;
+    }
+
+    .main .inputGroup {
+      margin: 30px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .main .inputGroup div {
+      margin: 16px 0;
+    }
+
+    .main .inputGroup div label {
+      display: inline-block;
+      min-width: 110px;
+    }
+
+    .main .inputGroup div input {
+      height: 48px;
+      width: 60%;
+    }
+
+
+    .main .form-check-input {
+      width: 18px;
+      height: 18px;
+    }
+
+    .main .footerButton {
+      border-top: 1px solid #D3D3D3;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .main .footerButton .buttonGroup {
+      margin-top: 40px;
+    }
+
+    .main .footerButton .buttonGroup button {
+      width: 100px;
+      height: 38px;
+      font-size: 16px;
+    }
+
+
+    .main .widthLimit {
+      width: 140px;
+      margin-left: 10px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main col-md-12 card">
+    <div class="pageBody">
+      <p class="pageTitle"><i class="pe-7s-note" style="font-size: 22px;margin-right: 10px;"></i>新增班次信息</p>
+      <form class="needs-validation" novalidate="" id="myForm" action="#">
+        <div class="inputGroup form-inline form-row">
+          <div class="col-md-8 form-group">
+            <label class="form-label" for="routeNameAdd">线路名:</label>
+            <input type="text" class="form-control" id="routeNameAdd" placeholder="线路名" value="" name="routeName"
+              required="">
+            <div class="valid-feedback 
+            widthLimit">
+              输入正确
+            </div>
+            <div class="invalid-feedback 
+            widthLimit">
+              请输入汉字
+            </div>
+          </div>
+          <div class="col-md-8 form-group">
+            <label for="allTicketAdd">总票数:</label>
+            <input type="text" class="form-control" id="allTicketAdd" placeholder="总票数" value="" name="allTicket"
+              required="">
+            <div class="valid-feedback widthLimit">
+              输入正确
+            </div>
+            <div class="invalid-feedback widthLimit">
+              请输入合理的数字
+            </div>
+          </div>
+          <div class="col-md-8 form-group">
+            <label for="plateNumbersAdd">车牌号:</label>
+            <input type="text" class="form-control" id="plateNumbersAdd" placeholder="车牌号，多辆车用,隔开" value=""
+              name="plateNumbers" required="">
+            <div class="valid-feedback widthLimit">
+              输入正确
+            </div>
+            <div class="invalid-feedback widthLimit">
+              请输入正确的车牌号
+            </div>
+          </div>
+          <div class="col-md-8 form-group">
+            <label for="carStartTimeAdd">发车时间:</label>
+            <input type="text" class="form-control" id="carStartTimeAdd" placeholder="发车时间" value="" name="carStartTime"
+              required="">
+          </div>
+        </div>
+
+        <div class="form-row" style="justify-content: space-around;margin-bottom: 10px;">
+          <div class="position-relative form-check"><input name="check" id="togetherAdd" type="checkbox"
+              class="form-check-input"><label for="togetherAdd" class="form-check-label">是否拼团</label></div>
+          <div class="position-relative form-check"><input name="check" id="hotAdd" type="checkbox"
+              class="form-check-input"><label for="hotAdd" class="form-check-label">是否热门</label></div>
+          <div class="position-relative form-check"><input name="check" id="saleAdd" type="checkbox" checked
+              class="form-check-input"><label for="saleAdd" class="form-check-label">开启售票</label></div>
+        </div>
+        <div class="footerButton">
+          <div class="buttonGroup">
+            <a href="javascript:window.opener=null;window.open('','_self');window.close();"><button type="button"
+                class="btn btn-secondary">取消</button></a>
+            <button type="submit" class="btn btn-primary" onclick="addConfirm()">提交</button>
+          </div>
+        </div>
+      </form>
+      <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+          'use strict';
+          window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+              form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+              }, false);
+            });
+          }, false);
+        })();
+      </script>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- ../../wrapper -->
+  <script src="../../assets/scripts/main.js"></script>
+</body>
+
+</html>

@@ -3,7 +3,7 @@
   "message": "执行成功",
   "data": [
     {
-      "menuTitle": "柠檬出行",
+      "menuTitle": "功能模块",
       "id": 1,
       "parentId": null,
       "name": "基础信息管理",
@@ -245,6 +245,42 @@
       "icon": null,
       "ordering": 1003,
       "version": null
+    },
+    {
+      "id": 28,
+      "parentId": null,
+      "name": "表格模板",
+      "url": null,
+      "icon": "metismenu-icon pe-7s-display2",
+      "ordering": 10,
+      "version": "2020-11-27T08:46:54.000+0000"
+    },
+    {
+      "id": 29,
+      "parentId": 28,
+      "name": "表格页面",
+      "url": "./pages/demo/list.html",
+      "icon": null,
+      "ordering": 101,
+      "version": "2020-11-30T01:38:43.000+0000"
+    },
+    {
+      "id": 30,
+      "parentId": 28,
+      "name": "新增页面",
+      "url": "./pages/demo/addPage.html",
+      "icon": null,
+      "ordering": 102,
+      "version": "2020-11-30T01:38:47.000+0000"
+    },
+    {
+      "id": 31,
+      "parentId": 28,
+      "name": "编辑页面",
+      "url": "./pages/demo/editPage.html",
+      "icon": null,
+      "ordering": 103,
+      "version": "2020-12-08T01:38:47.000+0000"
     }
   ]
 }

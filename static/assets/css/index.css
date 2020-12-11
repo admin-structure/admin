@@ -4,43 +4,40 @@ ul li {
 
 #tabParent {
     width: 100%;
-    height: 60px;
+    height: 50px;
     padding: 0;
     margin: 0;
-    background-color: white;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    background-color: #fff;
     position: relative;
     overflow: hidden;
+    border-top: 1px solid #D3D3D3;
+    margin-top: 10px;
+    
+    margin-bottom: 10px;
 }
 
 /*::-webkit-scrollbar{*/
 /*display:none;*/
 /*}*/
 #tabs {
-    height: 30px;
-    margin-top: 15px;
-    padding-left: 0;
+    height: 50px;
+    padding: 0 40px 0 20px;
     position: absolute;
     white-space: nowrap;
 }
 
 #tabs > li {
-    height: 30px;
+    height: 40px;
     box-sizing: border-box;
-    /*float: left;*/
     display: inline-block;
-    margin-left: 5px;
+    margin-left: 2px;
     padding: 0 8px;
     cursor: pointer;
-    background-color: #39BCF0;
-    color: white;
-    border-radius: 5px;
-}
-
-#tabs > li > p {
-    height: 100%;
-    line-height: 28px;
+    background-color: #EBEBEB;
+    color: #6E6E6E;
+    margin-top: 8px;
+    line-height: 40px;
+    border-radius: 3px;
 }
 
 #tabs > li > p:first-child {
@@ -49,43 +46,73 @@ ul li {
 
 #tabs > li > p:last-child {
     width: 20px;
-    margin-left: 10px;
+    margin-left: 8px;
+    margin-right:  -8px;
+    margin-top: -3px;
     float: right;
-    font-size: 18px;
+    font-size: 22px;
+    
+    
+}
+#tabs > li:hover{
+  color: #646464;
+  background-color: rgba(235,235,235,0.8);
 }
 #tabs > li > p:last-child:hover{
-    color:red;
+    color:#505050;
     font-weight: 700;
+    font-size: 24px;
 }
 .tabActive{
-    color: #fff !important;
-    background-color: #11A566 !important;
+    font-weight: 500 !important;
+    color: #787878 !important;
+    border: 1px solid #EBEBEB !important;
+    border-bottom: none !important;
+    background-color: #fff !important;
 }
 /*前进 后退 按钮*/
-#selectMove{
-    display: none;
-    height: 100%;
-    width: 65px;
-    position: absolute;
-    right: 0;
-    z-index: 1000;
-    background-color: white;
-    padding-top: 15px;
-    background-color: #E0F3FF;
+
+#leftArrow{
+  display: none;
+  width: 24px;
+  height: 34px;
+  position: absolute;
+  left: 0;
+  top: 20%;
+  z-index: 1000;
+  background-color: #BEBEBE;
+  text-align: center;
+  line-height: 34px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #6E6E6E;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
-#selectMove>p{
-    height: 30px;
-    width: 30px;
-    float: right;
-    text-align: center;
-    line-height: 30px;
-    cursor: pointer;
-    font-size: 20px;
-    color: #12A768;
+#rightArrow{
+  display: none;
+  width: 24px;
+  height: 34px;
+  position: absolute;
+  right: 0;
+  top: 20%;
+  z-index: 1000;
+  background-color: #BEBEBE;
+  text-align: center;
+  line-height: 34px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #6E6E6E;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
-#selectMove>p:hover{
-    color: red;
-    font-size: 28px;
-    font-weight: 700;
+#rightArrow:hover,#leftArrow:hover{
+  color: #646464;
+  font-size: 22px;
 }
+.app-main__inner{
+    padding:0 !important;
+    background-color: #fff !important;
+}
+
