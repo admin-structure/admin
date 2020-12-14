@@ -7,13 +7,7 @@
 
   <link rel="stylesheet" type="text/css" media="all" href="../../plugins/timeSeleter/daterangepicker-bs3.css" />
   <link rel="stylesheet" href="../../assets/css/main.css">
-  <!-- Font Awesome -->
-  <!-- <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css"> -->
 
-  <!-- overlayScrollbars -->
-  <!--<link rel="stylesheet" href="../../plugins/adminlte/css/adminlte.css">-->
-
-  <!--******-->
   <!-- DataTables -->
   <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.css">
@@ -62,72 +56,61 @@
 
     @media only screen and (max-width: 980px) {
 
-      tr th:nth-child(7),
-      tr td:nth-child(7) {
-        display: none;
-        visibility: hidden;
-      }
-
-      tr th:nth-child(7),
-      tr td:nth-child(7) {
-        display: none;
-        visibility: hidden;
-      }
-    }
-
-    @media only screen and (max-width: 320px) {
-
-      tr th:nth-child(2),
-      tr td:nth-child(2) {
-        display: none;
-        visibility: hidden;
-      }
-
-      tr th:nth-child(5),
-      tr td:nth-child(5) {
-        display: none;
-        visibility: hidden;
-      }
-
-      tr th:nth-child(6),
-      tr td:nth-child(6) {
-        display: none;
-        visibility: hidden;
-      }
-
-      tr th:nth-child(7),
-      tr td:nth-child(7) {
-        display: none;
-        visibility: hidden;
-      }
-
-      tr th:nth-child(9),
-      tr td:nth-child(9) {
-        display: none;
-        visibility: hidden;
-      }
-
       tr th:nth-child(10),
       tr td:nth-child(10) {
-        display: none;
-        visibility: hidden;
+        display: none !important;
+        visibility: hidden !important;
       }
 
       tr th:nth-child(11),
       tr td:nth-child(11) {
-        display: none;
-        visibility: hidden;
+        display: none !important;
+        visibility: hidden !important;
+      }
+    }
+
+    @media only screen and (max-width: 860px) {
+
+      tr th:nth-child(6),
+      tr td:nth-child(6) {
+        display: none !important;
+        visibility: hidden !important;
       }
 
-      tr th:nth-child(12),
-      tr td:nth-child(12) {
-        display: none;
-        visibility: hidden;
+      tr th:nth-child(7),
+      tr td:nth-child(7) {
+        display: none !important;
+        visibility: hidden !important;
+      }
+    }
+
+    @media only screen and (max-width: 740px) {
+
+      tr th:nth-child(5),
+      tr td:nth-child(5) {
+        display: none !important;
+        visibility: hidden !important;
       }
 
+    }
 
+    @media only screen and (max-width: 490px) {
 
+      tr th:nth-child(2),
+      tr td:nth-child(2) {
+        display: none !important;
+        visibility: hidden !important;
+      }
 
+    }
+
+    @media only screen and (max-width: 450px) {
+
+      tr th:nth-child(5),
+      tr td:nth-child(5) {
+        display: none !important;
+        visibility: hidden !important;
+      }
 
     }
   </style>
@@ -195,6 +178,22 @@
             </div>
           </div>
           <div style="padding: 15px 20px;">
+            <div style="display: flex;">
+              <div style="display: flex; align-items: center;" class="col-md-2">
+                <label for="#Select1" style="font-size: 16px; margin-right: 6px;min-width: 84px;">是否热门:</label>
+                <select name="select" id="Select1" class="form-control ">
+                  <option>是</option>
+                  <option>否</option>
+                </select>
+              </div>
+              <div style="display: flex; align-items: center;" class="col-md-2">
+                <label for="#Select1" style="font-size: 16px; margin-right: 6px;min-width: 84px;">售票状态:</label>
+                <select name="select" id="Select1" class="form-control ">
+                  <option>开启</option>
+                  <option>关闭</option>
+                </select>
+              </div>
+            </div>
             <table id="oper-demo" class="table table-bordered table-hover dataTable dtr-inline">
             </table>
           </div>
@@ -205,7 +204,6 @@
 
     <!-- jQuery -->
     <script src="../../plugins/jquery/jquery.min.js"></script>
-    <!-- <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
     <!-- ../../wrapper -->
     <script src="../../assets/scripts/main.js"></script>
 
@@ -226,12 +224,6 @@
 </body>
 
 <script>
-  /* $(document).ready(function () {
-    $('#oper-demo').DataTable({
-      responsive: true
-    });
-
-  }); */
 
   function searchButton() {
     let text = $("#searchText").text();
@@ -285,7 +277,6 @@
         $("#editBtn")[0].dataset.id = id; // 传递
         // 数据回显
         axios.get(`/frequency/findById/${id}`).then(res => {
-          // console.log("回显数据",res.data.data)
           fillFormData(res.data.data)
           $("#myModal").modal('show')
         })
@@ -323,13 +314,11 @@
         //--------------------------------------
 
         ajax: function (data, callback, settings) {
-          // console.log("data---",data)
           //封装请求参数
           let param = {};
           param.pageSize = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
           param.currentPage = (data.start / data.length) + 1;//当前页码
           param.searchMap = searchMap
-          console.log("param: ", param);
           //ajax请求数据
           $.ajax({
             type: "GET",
