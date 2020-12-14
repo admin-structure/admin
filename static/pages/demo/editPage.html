@@ -4,8 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <title>test</title>
-  <script type="text/javascript" src="../../plugins/timeSeleter/daterangepicker.js"></script>
-  <script type="text/javascript" src="../../plugins/timeSeleter/moment.js"></script>
   <link rel="stylesheet" type="text/css" media="all" href="../../plugins/timeSeleter/daterangepicker-bs3.css" />
   <link rel="stylesheet" href="../../assets/css/main.css">
   <!--******-->
@@ -153,7 +151,7 @@
         </div>
         <div class="footerButton">
           <div class="buttonGroup">
-            <a href="javascript:window.opener=null;window.open('','_self');window.close();"><button type="button"
+            <a href="javascript:void (0);" onclick="editCancel()"><button type="button"
                 class="btn btn-secondary">取消</button></a>
             <button type="submit" class="btn btn-primary" onclick="editConfirm(this)">提交</button>
           </div>
@@ -189,6 +187,21 @@
   <script src="../../plugins/jquery/jquery.min.js"></script>
   <!-- ../../wrapper -->
   <script src="../../assets/scripts/main.js"></script>
+  <script type="text/javascript" src="../../plugins/timeSeleter/daterangepicker.js"></script>
+  <script type="text/javascript" src="../../plugins/timeSeleter/moment.js"></script>
+  <script>
+      // 新增
+      this.editConfirm = function () {
+          // todo 与DB交互
+          // 做完DB编辑操作后
+          parent.removeActiveOne()
+      }
+      // 取消新增
+      this.editCancel = function () {
+          parent.removeActiveOne()
+      }
+
+  </script>
 </body>
 
 </html>
