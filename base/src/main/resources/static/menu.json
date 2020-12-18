@@ -1,12 +1,12 @@
 {
   "flag": true,
-  "message": "执行成功",
+  "message": "请求成功",
   "data": [
     {
-      "menuTitle": "功能模块",
+      "menuTitle": "Main-menu",
       "id": 1,
       "parentId": null,
-      "name": "基础信息管理",
+      "name": "menu-1",
       "url": null,
       "icon": "metismenu-icon pe-7s-menu",
       "ordering": 10,
@@ -15,7 +15,7 @@
     {
       "id": 4,
       "parentId": null,
-      "name": "车辆管理",
+      "name": "menu-2",
       "url": null,
       "icon": "metismenu-icon pe-7s-car",
       "ordering": 20,
@@ -24,7 +24,7 @@
     {
       "id": 6,
       "parentId": null,
-      "name": "站点管理",
+      "name": "menu-3",
       "url": null,
       "icon": "metismenu-icon pe-7s-culture",
       "ordering": 30,
@@ -33,7 +33,7 @@
     {
       "id": 8,
       "parentId": null,
-      "name": "线路管理",
+      "name": "menu-4",
       "url": null,
       "icon": "metismenu-icon pe-7s-loop",
       "ordering": 40,
@@ -42,7 +42,7 @@
     {
       "id": 12,
       "parentId": null,
-      "name": "班次管理",
+      "name": "menu-5",
       "url": null,
       "icon": "metismenu-icon pe-7s-way",
       "ordering": 50,
@@ -51,7 +51,7 @@
     {
       "id": 16,
       "parentId": null,
-      "name": "活动管理",
+      "name": "menu-6",
       "url": null,
       "icon": "metismenu-icon pe-7s-target",
       "ordering": 60,
@@ -60,7 +60,7 @@
     {
       "id": 18,
       "parentId": null,
-      "name": "消息推送",
+      "name": "menu-7",
       "url": null,
       "icon": "metismenu-icon pe-7s-paper-plane",
       "ordering": 70,
@@ -69,7 +69,7 @@
     {
       "id": 20,
       "parentId": null,
-      "name": "用户管理",
+      "name": "menu-8",
       "url": null,
       "icon": "metismenu-icon pe-7s-id",
       "ordering": 80,
@@ -78,7 +78,7 @@
     {
       "id": 22,
       "parentId": null,
-      "name": "订单管理",
+      "name": "menu-9",
       "url": null,
       "icon": "metismenu-icon pe-7s-note2",
       "ordering": 90,
@@ -87,7 +87,7 @@
     {
       "id": 24,
       "parentId": null,
-      "name": "系统管理",
+      "name": "menu-10",
       "url": null,
       "icon": "metismenu-icon pe-7s-home",
       "ordering": 100,
@@ -96,7 +96,7 @@
     {
       "id": 2,
       "parentId": 1,
-      "name": "banner管理",
+      "name": "submenu-1-1",
       "url": "pages/basicInformation/banner.html",
       "icon": null,
       "ordering": 101,
@@ -105,7 +105,7 @@
     {
       "id": 3,
       "parentId": 1,
-      "name": "公告管理",
+      "name": "submenu-1-2",
       "url": "pages/basicInformation/Announcement.html",
       "icon": null,
       "ordering": 102,
@@ -114,7 +114,7 @@
     {
       "id": 5,
       "parentId": 4,
-      "name": "车辆管理",
+      "name": "submenu-2-1",
       "url": "pages/carInfo/CarInfo.html",
       "icon": null,
       "ordering": 201,
@@ -123,7 +123,7 @@
     {
       "id": 7,
       "parentId": 6,
-      "name": "站点管理",
+      "name": "submenu-3-1",
       "url": "pages/station/Station.html",
       "icon": null,
       "ordering": 301,
@@ -132,7 +132,7 @@
     {
       "id": 9,
       "parentId": 8,
-      "name": "校园线路管理",
+      "name": "submenu-4-1",
       "url": ".html",
       "icon": null,
       "ordering": 401,
@@ -141,7 +141,7 @@
     {
       "id": 10,
       "parentId": 8,
-      "name": "城际线路管理",
+      "name": "submenu-4-2",
       "url": ".html",
       "icon": null,
       "ordering": 402,
@@ -150,7 +150,7 @@
     {
       "id": 11,
       "parentId": 8,
-      "name": "热门线路管理",
+      "name": "submenu-4-3",
       "url": ".html",
       "icon": null,
       "ordering": 403,
@@ -159,7 +159,7 @@
     {
       "id": 13,
       "parentId": 12,
-      "name": "校园线路班次管理",
+      "name": "submenu-5-1",
       "url": "pages/frequency/school.html",
       "icon": null,
       "ordering": 501,
@@ -168,7 +168,7 @@
     {
       "id": 14,
       "parentId": 12,
-      "name": "城际线路班次管理",
+      "name": "submenu-5-2",
       "url": "pages/frequency/frequency.html",
       "icon": null,
       "ordering": 502,
@@ -177,7 +177,7 @@
     {
       "id": 15,
       "parentId": 12,
-      "name": "热门线路班次管理",
+      "name": "submenu-5-3",
       "url": "pages/frequency/hot.html",
       "icon": null,
       "ordering": 503,
@@ -186,7 +186,7 @@
     {
       "id": 17,
       "parentId": 16,
-      "name": "活动管理",
+      "name": "submenu-6-1",
       "url": "pages/activity/Activity.html",
       "icon": null,
       "ordering": 601,
@@ -195,7 +195,7 @@
     {
       "id": 19,
       "parentId": 18,
-      "name": "消息推送",
+      "name": "submenu-7-1",
       "url": ".html",
       "icon": null,
       "ordering": 701,
@@ -204,7 +204,7 @@
     {
       "id": 21,
       "parentId": 20,
-      "name": "用户管理",
+      "name": "submenu-8-1",
       "url": "pages/test/User.html",
       "icon": null,
       "ordering": 801,
@@ -213,7 +213,7 @@
     {
       "id": 23,
       "parentId": 22,
-      "name": "订单管理",
+      "name": "submenu-9-1",
       "url": "pages/order/order.html",
       "icon": null,
       "ordering": 901,
@@ -222,7 +222,7 @@
     {
       "id": 25,
       "parentId": 24,
-      "name": "用户管理",
+      "name": "submenu-10-1",
       "url": ".html",
       "icon": null,
       "ordering": 1001,
@@ -231,7 +231,7 @@
     {
       "id": 26,
       "parentId": 24,
-      "name": "角色管理",
+      "name": "submenu-10-2",
       "url": ".html",
       "icon": null,
       "ordering": 1002,
@@ -240,7 +240,7 @@
     {
       "id": 27,
       "parentId": 24,
-      "name": "菜单权限管理\r\n",
+      "name": "submenu-10-3",
       "url": ".html",
       "icon": null,
       "ordering": 1003,
@@ -258,7 +258,7 @@
     {
       "id": 29,
       "parentId": 28,
-      "name": "表格页面",
+      "name": "表格demo页",
       "url": "./pages/demo/list.html",
       "icon": null,
       "ordering": 101,
@@ -267,7 +267,7 @@
     {
       "id": 30,
       "parentId": 28,
-      "name": "新增页面",
+      "name": "新增demo页",
       "url": "./pages/demo/addPage.html",
       "icon": null,
       "ordering": 102,
@@ -276,7 +276,7 @@
     {
       "id": 31,
       "parentId": 28,
-      "name": "编辑页面",
+      "name": "编辑demo页",
       "url": "./pages/demo/editPage.html",
       "icon": null,
       "ordering": 103,

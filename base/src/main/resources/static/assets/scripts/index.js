@@ -1,89 +1,17 @@
 // tabs 初始就一个仪表盘
 var showTabs = [];
-let indexObj = {
-    url: "pages/test/validator.html",
+var indexObj = {
+    url: "./pages/dashboard.html",
     name: "仪表盘",
     standup: true
 };
 showTabs.push(indexObj)
 
+var that = this;
 setTimeout(() => {
-    
-    $.ajaxSettings.async = false;
-    $.getJSON('/menu.json', function (data) {
-        var str1 = "";
-        var str2 = "";
-        let result = data.data;
-        for (var i = 0; i < result.length; i++) {
-            if (result[i].url == null && result[i].menuTitle != null) {
-                str1 += `<li class="app-sidebar__heading">${result[i].menuTitle}</li>
-            <li>
-                  <a href="#">
-                  <i class="${result[i].icon}"></i>
-                  ${result[i].name}
-                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul class="mm-collapse">
-                  <li class="${result[i].id}">
 
-                  </li>
-                </ul>
-                </li>`
-                $(".loadMenu").append(str1);
-                str1 = "";
-                id = `${result[i].parentId}`
-            }
-            else if (result[i].url == null) {
-                str1 += `
-            <li>
-                  <a href="#">
-                  <i class="${result[i].icon}"></i>
-                  ${result[i].name}
-                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                </a>
-                <ul class="mm-collapse">
-                  <li class="${result[i].id}">
+        that.isRightBtnShow = function() {
 
-                  </li>
-                </ul>
-                </li>`
-                $(".dd").append(str1);
-                str1 = "";
-                id = `${result[i].parentId}`
-            }
-            if (result[i].url != null) {
-                str2 += `
-                    <a onclick="showContent(this)" data-submenu=${JSON.stringify(result[i])} href="javascript:void(0);">
-                      <i class="metismenu-icon"></i>
-                      ${result[i].name}
-                    </a>
-                  `
-                $("." + `${result[i].parentId}`).append(str2);
-                str2 = "";
-            }
-        }
-
-        // 一开始渲染仪表盘
-        renderSubMenu(indexObj.url);
-
-        $("#footer").load("/pages/footer.html");
-        showContent = (dom) => {
-            let submenuObj = JSON.parse(dom.dataset.submenu);
-            let path = submenuObj.url;
-            if (!isExist(path)) {
-                submenuObj.standup = true
-                showTabs.push(submenuObj)
-            }
-            renderSubMenu(path);
-            isRightBtnShow()
-        }
-        //  前进后退选项是否显示
-        window.onresize = function () {
-            isRightBtnShow()
-        }
-
-        function isRightBtnShow() {
-            // let innerW = $("#tabs").width();
             let innerW = 0;
             $("#tabs>li").each((i,v)=>{
                 innerW+=$(v).width()
@@ -142,7 +70,7 @@ setTimeout(() => {
         })
 
         // 删除
-        function removeTabAndIframe(path) {
+        that.removeTabAndIframe =function (path) {
 
             $("#content").find("iframe").each((i, v) => {
                 if (v.dataset.url == path) {
@@ -169,13 +97,18 @@ setTimeout(() => {
             isRightBtnShow()
         }
 
+        // 清除选定的tab
+        that.removeActiveOne = function(){
+            let activeDom =  $(document).find("#tabs").children(".tabActive")[0];
+            let path = activeDom.dataset.url;
+            removeTabAndIframe(path)
+        }
+
         // 渲染
-        function renderSubMenu(path) {
-            // $("#tabs").html("")
-            // $("#content").html("")
+        that.renderSubMenu = function(path) {
             showTabs.forEach(v => {
                 if (v.standup) {
-                    let tab_s = `<li data-url="${v.url}" class="tabActive"><p>${v.name}</p><p>×</p></li>`;
+                    let tab_s = `<li data-url="${v.url}" oncontextmenu="clearOneOrAllTabs()"  class="tabActive"><p>${v.name}</p><p>×</p></li>`;
                     if (v.name == "仪表盘") {
                         tab_s = `<li data-url="${v.url}"><p><i class="pe-7s-home" style="font-size: 20px; margin-right: 5px;"></i>仪表盘</p><p style="display: none"></p></li>`
                     }
@@ -191,7 +124,7 @@ setTimeout(() => {
         }
 
         // 是否存在
-        function isExist(path) {
+        that.isExist = function(path) {
             for (let i = 0; i < showTabs.length; i++) {
                 if (showTabs[i].url == path) {
                     return true;
@@ -201,7 +134,7 @@ setTimeout(() => {
         }
 
         // 独显iframe
-        function hideAllIframeShowActive(path) {
+        that.hideAllIframeShowActive =function(path) {
             $("#content").find("iframe").hide()
             $("#content").find("iframe").each((i, v) => {
                 let attribute = v.getAttribute("src");
@@ -212,7 +145,7 @@ setTimeout(() => {
         }
 
         // 独显tab样式
-        function activeTabShow(path) {
+        that.activeTabShow =function(path) {
             $("#tabs").find("li").each((i, v) => {
                 $(v).removeClass("tabActive")
                 if (path == v.dataset.url) {
@@ -222,8 +155,90 @@ setTimeout(() => {
         }
 
 
+    $.ajaxSettings.async = false;
+    $.getJSON('/menu.json', function (data) {
+        var str1 = "";
+        var str2 = "";
+        let result = data.data;
+        for (var i = 0; i < result.length; i++) {
+            if (result[i].url == null && result[i].menuTitle != null) {
+                str1 += `<li class="app-sidebar__heading">${result[i].menuTitle}</li>
+            <li>
+                  <a href="#">
+                  <i class="${result[i].icon}"></i>
+                  ${result[i].name}
+                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul class="mm-collapse">
+                  <li class="${result[i].id}">
+
+                  </li>
+                </ul>
+                </li>`
+                $(".loadMenu").append(str1);
+                str1 = "";
+                id = `${result[i].parentId}`
+            }
+            else if (result[i].url == null) {
+                str1 += `
+            <li>
+                  <a href="#">
+                  <i class="${result[i].icon}"></i>
+                  ${result[i].name}
+                  <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                </a>
+                <ul class="mm-collapse">
+                  <li class="${result[i].id}">
+
+                  </li>
+                </ul>
+                </li>`
+                $(".dd").append(str1);
+                str1 = "";
+                id = `${result[i].parentId}`
+            }
+            if (result[i].url != null) {
+                str2 += `
+                    <a onclick="showContent(this)" data-submenu=${JSON.stringify(result[i])} href="javascript:void(0);">
+                      <i class="metismenu-icon"></i>
+                      ${result[i].name}
+                    </a>
+                  `
+                $("." + `${result[i].parentId}`).append(str2);
+                str2 = "";
+            }
+        }
+
+        // 一开始渲染仪表盘
+        renderSubMenu(indexObj.url);
+
+        $("#footer").load("/pages/footer.html");
+        that.showContent = (dom) => {
+            let submenuObj = JSON.parse(dom.dataset.submenu);
+            operateData(submenuObj)
+        }
+        // 后面新增和编辑需单独处理
+        that.operateData = function(obj){
+            let path = obj.url;
+            if (!isExist(path)) {
+                obj.standup = true
+                showTabs.push(obj)
+            }
+            renderSubMenu(path)
+            isRightBtnShow()
+        }
+
+
+        //  前进后退选项是否显示
+        window.onresize = function () {
+            isRightBtnShow()
+        }
+
+
+        // getJson end ...
+
     })
 
-
+  // settimeout end ....
 }, 50)
 
