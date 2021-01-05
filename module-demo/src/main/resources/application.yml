@@ -6,15 +6,9 @@ spring:
   datasource:
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://47.108.216.252:3306/lemon?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
-    password: 321
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true;useJDBCCompliantTimezoneShift=true;useLegacyDatetimeCode=false;serverTimezone=UTC
+    password: 123456
 
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-
-mybatis-plus:
-  global-config:
-    db-config:
-      logic-not-delete-value: 0
-      logic-delete-value: 1
+#mybatis:
+#  configuration:
+#    map-underscore-to-camel-case: true

@@ -3,16 +3,28 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <context id="mysql" targetRuntime="MyBatis3DynamicSql">
+        <!-- 生成注释为false 不生成为true -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+        </commentGenerator>
+
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai"
+                        connectionURL="jdbc:mysql://localhost:3306/test?serverTimezone=UTC"
                         userId="root"
                         password="123456"
         />
 
-        <javaModelGenerator targetPackage="example.model" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="org.apache.module" targetProject="src/main/java"/>
+        <javaClientGenerator targetPackage="org.apache.mapper" targetProject="src/main/java"/>
+<!--        <javaServiceGenerator targetPackage="org.apache.service" targetProject="src/main/java" implementationPackage="org.apache.service"/>-->
+<!--        <javaControllerGenerator targetPackage="org.apache.service" targetProject="src/main/java"/>-->
 
-        <javaClientGenerator targetPackage="example.mapper" targetProject="src/main/java"/>
-
+        <!--生成对应表及类名,添加:enableInsertBatch(是否生成批量添加语句,目前只支持oracle),enableInsertBatchIgnore:批量添加语句中忽略的字段-->
+<!--        <table tableName="SYSTEM_NOTICE" domainObjectName="SystemNotice" enableCountByExample="true" enableUpdateByExample="true"-->
+<!--               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="false" enableInsertBatch="true"-->
+<!--               enableListParam="true">-->
+<!--            <property name="enableInsertBatchIgnore" value="createDt"></property>-->
+<!--        </table>-->
         <table tableName="account" />
     </context>
 </generatorConfiguration>
