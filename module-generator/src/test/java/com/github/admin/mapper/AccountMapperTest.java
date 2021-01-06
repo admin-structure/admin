@@ -8,7 +8,7 @@ import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import javax.annotation.Resource;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @version v0.1
@@ -26,6 +26,6 @@ class AccountMapperTest {
     void queryAll() {
         List<Account> accounts = accountMapper.select(c -> c);
         accounts.forEach(account -> System.out.println(account.toString()));
-        assertThat(accounts.size() == 2);
+        assertTrue(accounts.size() == 2);
     }
 }

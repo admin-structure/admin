@@ -2,9 +2,13 @@ package com.github.admin.service.impl;
 
 import com.github.admin.module.Account;
 import com.github.admin.service.AccountService;
+import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
+import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
 import javax.annotation.Resource;
@@ -18,7 +22,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * @Autheror wanglei
  */
 @MybatisTest
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Import(AccountServiceImpl.class)
+@ImportAutoConfiguration(PageHelperAutoConfiguration.class)
 class AccountServiceImplTest {
     @Resource
     private AccountService accountService;
@@ -30,6 +36,6 @@ class AccountServiceImplTest {
 
         accounts.forEach(account -> System.out.println(account.toString()));
 
-        assertThat(accounts.size() == 2);
+        assertTrue(accounts.size() == 1);
     }
 }

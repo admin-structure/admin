@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@MapperScan("org.apache.mapper")
 public class GenerateApplication {
 
     public static void main(String[] args) {
