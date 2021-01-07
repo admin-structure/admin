@@ -24,8 +24,6 @@ class AccountMapperTest {
     @Test
     @DisplayName("should return all accounts success from mapper")
     void queryAll() {
-        List<Account> accounts = accountMapper.select(c -> c);
-        accounts.forEach(account -> System.out.println(account.toString()));
-        assertTrue(accounts.size() == 2);
+        assertTrue(accountMapper.select(c -> c).size() == 2);
     }
 }

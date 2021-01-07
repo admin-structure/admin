@@ -6,16 +6,13 @@ import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 
-import javax.annotation.Resource;
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @version v0.1
@@ -26,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @Import(AccountServiceImpl.class)
 @ImportAutoConfiguration(PageHelperAutoConfiguration.class)
 class AccountServiceImplTest {
-    @Resource
+    @Autowired
     private AccountService accountService;
 
     @Test
