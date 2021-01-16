@@ -16,9 +16,9 @@ public class GenerateApplication {
     private static void generateDocs() {
         DocsConfig config = new DocsConfig();
         config.setProjectPath("e://admin-structure//module-generator");
-        config.setProjectName("lemon");
+        config.setProjectName("test");
         config.setApiVersion("V1.0");
-        config.setDocsPath("D://lemon-api");
+        config.setDocsPath("D://test-api");
         config.setAutoGenerate(Boolean.TRUE);
 
         Docs.buildHtmlDocs(config);

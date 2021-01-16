@@ -3,8 +3,9 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
     <context id="mysql" targetRuntime="MyBatis3DynamicSql">
-        <!-- 生成注释为false 不生成为true -->
         <commentGenerator>
+<!--            <property name="suppressDate" value="false" />-->
+            <property name="addRemarkComments" value="true"/>
             <property name="suppressAllComments" value="false"/>
         </commentGenerator>
 
@@ -14,8 +15,8 @@
                         password="123456"
         />
 
-        <javaModelGenerator targetPackage="org.apache.module" targetProject="src/main/java"/>
-        <javaClientGenerator targetPackage="org.apache.mapper" targetProject="src/main/java"/>
+        <javaModelGenerator targetPackage="com.github.admin.module" targetProject="src/main/java"/>
+        <javaClientGenerator targetPackage="com.github.admin.mapper" targetProject="src/main/java"/>
 <!--        <javaServiceGenerator targetPackage="org.apache.service" targetProject="src/main/java" implementationPackage="org.apache.service"/>-->
 <!--        <javaControllerGenerator targetPackage="org.apache.service" targetProject="src/main/java"/>-->
 

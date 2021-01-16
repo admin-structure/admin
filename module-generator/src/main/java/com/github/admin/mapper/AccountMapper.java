@@ -1,11 +1,13 @@
 package com.github.admin.mapper;
 
+import static com.github.admin.mapper.AccountDynamicSqlSupport.*;
+import static org.mybatis.dynamic.sql.SqlBuilder.*;
+
+import com.github.admin.module.Account;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import javax.annotation.Generated;
-
-import com.github.admin.module.Account;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -32,105 +34,135 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface AccountMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.635+08:00", comments="Source Table: account")
-    BasicColumn[] selectList = BasicColumn.columnList(AccountDynamicSqlSupport.id, AccountDynamicSqlSupport.name);
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.954+08:00", comments="Source Table: account")
+    BasicColumn[] selectList = BasicColumn.columnList(id, name);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.625+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.945+08:00", comments="Source Table: account")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     long count(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.626+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.946+08:00", comments="Source Table: account")
     @DeleteProvider(type=SqlProviderAdapter.class, method="delete")
     int delete(DeleteStatementProvider deleteStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.626+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.946+08:00", comments="Source Table: account")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
     int insert(InsertStatementProvider<Account> insertStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.627+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.947+08:00", comments="Source Table: account")
     @InsertProvider(type=SqlProviderAdapter.class, method="insertMultiple")
     int insertMultiple(MultiRowInsertStatementProvider<Account> multipleInsertStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.628+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.947+08:00", comments="Source Table: account")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("AccountResult")
     Optional<Account> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.628+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.948+08:00", comments="Source Table: account")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="AccountResult", value = {
-        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER),
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR)
     })
     List<Account> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.63+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.949+08:00", comments="Source Table: account")
     @UpdateProvider(type=SqlProviderAdapter.class, method="update")
     int update(UpdateStatementProvider updateStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.63+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.95+08:00", comments="Source Table: account")
     default long count(CountDSLCompleter completer) {
-        return MyBatis3Utils.countFrom(this::count, AccountDynamicSqlSupport.account, completer);
+        return MyBatis3Utils.countFrom(this::count, account, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.631+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.95+08:00", comments="Source Table: account")
     default int delete(DeleteDSLCompleter completer) {
-        return MyBatis3Utils.deleteFrom(this::delete, AccountDynamicSqlSupport.account, completer);
+        return MyBatis3Utils.deleteFrom(this::delete, account, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.632+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.95+08:00", comments="Source Table: account")
+    default int deleteByPrimaryKey(Integer id_) {
+        return delete(c -> 
+            c.where(id, isEqualTo(id_))
+        );
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.951+08:00", comments="Source Table: account")
     default int insert(Account record) {
-        return MyBatis3Utils.insert(this::insert, record, AccountDynamicSqlSupport.account, c ->
-            c.map(AccountDynamicSqlSupport.id).toProperty("id")
-            .map(AccountDynamicSqlSupport.name).toProperty("name")
+        return MyBatis3Utils.insert(this::insert, record, account, c ->
+            c.map(id).toProperty("id")
+            .map(name).toProperty("name")
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.633+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.952+08:00", comments="Source Table: account")
     default int insertMultiple(Collection<Account> records) {
-        return MyBatis3Utils.insertMultiple(this::insertMultiple, records, AccountDynamicSqlSupport.account, c ->
-            c.map(AccountDynamicSqlSupport.id).toProperty("id")
-            .map(AccountDynamicSqlSupport.name).toProperty("name")
+        return MyBatis3Utils.insertMultiple(this::insertMultiple, records, account, c ->
+            c.map(id).toProperty("id")
+            .map(name).toProperty("name")
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.633+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.953+08:00", comments="Source Table: account")
     default int insertSelective(Account record) {
-        return MyBatis3Utils.insert(this::insert, record, AccountDynamicSqlSupport.account, c ->
-            c.map(AccountDynamicSqlSupport.id).toPropertyWhenPresent("id", record::getId)
-            .map(AccountDynamicSqlSupport.name).toPropertyWhenPresent("name", record::getName)
+        return MyBatis3Utils.insert(this::insert, record, account, c ->
+            c.map(id).toPropertyWhenPresent("id", record::getId)
+            .map(name).toPropertyWhenPresent("name", record::getName)
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.636+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.955+08:00", comments="Source Table: account")
     default Optional<Account> selectOne(SelectDSLCompleter completer) {
-        return MyBatis3Utils.selectOne(this::selectOne, selectList, AccountDynamicSqlSupport.account, completer);
+        return MyBatis3Utils.selectOne(this::selectOne, selectList, account, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.637+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.956+08:00", comments="Source Table: account")
     default List<Account> select(SelectDSLCompleter completer) {
-        return MyBatis3Utils.selectList(this::selectMany, selectList, AccountDynamicSqlSupport.account, completer);
+        return MyBatis3Utils.selectList(this::selectMany, selectList, account, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.637+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.956+08:00", comments="Source Table: account")
     default List<Account> selectDistinct(SelectDSLCompleter completer) {
-        return MyBatis3Utils.selectDistinct(this::selectMany, selectList, AccountDynamicSqlSupport.account, completer);
+        return MyBatis3Utils.selectDistinct(this::selectMany, selectList, account, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.638+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.957+08:00", comments="Source Table: account")
+    default Optional<Account> selectByPrimaryKey(Integer id_) {
+        return selectOne(c ->
+            c.where(id, isEqualTo(id_))
+        );
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.957+08:00", comments="Source Table: account")
     default int update(UpdateDSLCompleter completer) {
-        return MyBatis3Utils.update(this::update, AccountDynamicSqlSupport.account, completer);
+        return MyBatis3Utils.update(this::update, account, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.639+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.958+08:00", comments="Source Table: account")
     static UpdateDSL<UpdateModel> updateAllColumns(Account record, UpdateDSL<UpdateModel> dsl) {
-        return dsl.set(AccountDynamicSqlSupport.id).equalTo(record::getId)
-                .set(AccountDynamicSqlSupport.name).equalTo(record::getName);
+        return dsl.set(id).equalTo(record::getId)
+                .set(name).equalTo(record::getName);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2020-12-31T16:20:33.639+08:00", comments="Source Table: account")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.958+08:00", comments="Source Table: account")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(Account record, UpdateDSL<UpdateModel> dsl) {
-        return dsl.set(AccountDynamicSqlSupport.id).equalToWhenPresent(record::getId)
-                .set(AccountDynamicSqlSupport.name).equalToWhenPresent(record::getName);
+        return dsl.set(id).equalToWhenPresent(record::getId)
+                .set(name).equalToWhenPresent(record::getName);
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.96+08:00", comments="Source Table: account")
+    default int updateByPrimaryKey(Account record) {
+        return update(c ->
+            c.set(name).equalTo(record::getName)
+            .where(id, isEqualTo(record::getId))
+        );
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2021-01-16T11:53:10.96+08:00", comments="Source Table: account")
+    default int updateByPrimaryKeySelective(Account record) {
+        return update(c ->
+            c.set(name).equalToWhenPresent(record::getName)
+            .where(id, isEqualTo(record::getId))
+        );
     }
 }
