@@ -105,5 +105,9 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.7.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.13.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:2.2" level="project" />
+    <orderEntry type="library" name="Maven: io.github.yedaxia:japidocs:1.4.4" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.70" level="project" />
+    <orderEntry type="library" name="Maven: com.github.javaparser:javaparser-core:3.6.16" level="project" />
+    <orderEntry type="library" name="Maven: org.freemarker:freemarker:2.3.30" level="project" />
   </component>
 </module>
