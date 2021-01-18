@@ -27,5 +27,8 @@
 <!--            <property name="enableInsertBatchIgnore" value="createDt"></property>-->
 <!--        </table>-->
         <table tableName="account" />
+        <table tableName="line_information">
+            <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>
