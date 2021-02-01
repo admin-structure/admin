@@ -1,8 +1,12 @@
 package com.github.admin;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Ref;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,13 +26,13 @@ class UtilsTest {
     @Test
     void getRuleByStartDate() {
         List<RefundRule> rules = new ArrayList<>();
-        rules.add(new RefundRule(5, 6, 24, 0, LocalTime.of(16,0, 0)));
-        rules.add(new RefundRule(5, 6, 144, 50, null));
-        rules.add(new RefundRule(5, 6, 264, 80, null));
-        rules.add(new RefundRule(5, 6, 480, 100, null));
+        rules.add(new RefundRule(5, 2, 999999999, 100, LocalTime.of(0, 0, 0)));
+//        rules.add(new RefundRule(5, 6, 144, 50, null));
+//        rules.add(new RefundRule(5, 6, 264, 80, null));
+//        rules.add(new RefundRule(5, 6, 480, 100, null));
 
-        LocalDate startDate = LocalDate.of(2021, Month.JANUARY, 31);
-        LocalTime startTime = LocalTime.of( 21, 11);
+        LocalDate startDate = LocalDate.of(2021, Month.APRIL, 25);
+        LocalTime startTime = LocalTime.of(0, 0);
         LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
 
         RefundRule currentRule = null;
@@ -48,6 +52,23 @@ class UtilsTest {
         }
         System.out.println(currentRule);
 
+    }
+
+    @Test
+    void testLocalTimeNull() {
+//        t();
+//        String str = "SaobeiPay---返回报文:{\"end_time\":\"20210122112427\",\"merchant_name\":\"成都柠檬旅游资源开发有限公司\",\"merchant_no\":\"865105962000002\",\"out_refund_no\":\"122480286011021012211242707297\",\"out_trade_no\":\"122480284811321012211210206078\",\"pay_type\":\"010\",\"refund_fee\":\"1\",\"result_code\":\"01\",\"return_code\":\"01\",\"return_msg\":\"退款申请成功\",\"terminal_id\":\"12248028\",\"terminal_time\":\"20210122112426\",\"terminal_trace\":\"1083\"}";
+//        new ObjectMapper().readValue(str);
+        LocalDateTime time = LocalDateTime.of(2021, Month.JANUARY, 24, 14,33, 0);
+        LocalDateTime now = LocalDateTime.of(2021, Month.JANUARY, 24, 14,35, 0);
+        time = time.plusMinutes(1);
+        System.out.println(now.isAfter(time));
+
+    }
+
+    void t() {
+        RefundRule rule = null;
+        Optional.ofNullable(rule).orElseThrow(() -> new RuntimeException("未找到匹配的规则！"));
     }
 
     class RefundRule {

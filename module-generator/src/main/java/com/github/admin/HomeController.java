@@ -1,6 +1,6 @@
 package com.github.admin;
 
-import com.github.admin.module.Account;
+import com.github.admin.model.Account;
 import com.github.admin.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

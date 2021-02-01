@@ -1,6 +1,6 @@
 package com.github.admin.service;
 
-import com.github.admin.module.Account;
+import com.github.admin.model.Account;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ public interface AccountService {
     List<Account> queryAll();
     List<Account> queryPageHelper(int pageNum, int pageSize);
     List<Account> query(Account account);
-    Account query(Integer key);
+    Account query(Long key);
 
-    int delete(Integer id);
+    int delete(Long id);
     int delete(Account account);
 }

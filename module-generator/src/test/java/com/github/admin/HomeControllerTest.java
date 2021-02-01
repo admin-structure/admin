@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * @version v0.1
- * @Autheror wanglei
+ * @author wanglei
  */
 @SpringBootTest
 @AutoConfigureMockMvc

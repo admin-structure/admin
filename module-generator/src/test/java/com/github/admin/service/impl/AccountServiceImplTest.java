@@ -1,39 +1,40 @@
 package com.github.admin.service.impl;
 
-import com.github.admin.module.Account;
+import com.github.admin.model.Account;
 import com.github.admin.service.AccountService;
 import com.github.pagehelper.autoconfigure.PageHelperAutoConfiguration;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
+import javax.annotation.Resource;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @version v0.1
- * @Autheror wanglei
+ * @author wanglei
  */
 @MybatisTest
 @Import(AccountServiceImpl.class)
 @ImportAutoConfiguration(PageHelperAutoConfiguration.class)
 class AccountServiceImplTest {
-    @Autowired
+    @Resource
     AccountService accountService;
 
     @Test
     @DisplayName("should add a row to database, return number of rows affected")
     void add() {
         Account account = new Account();
-        account.setId(999);
+        account.setId(999L);
         account.setName("999");
 
         int rows = accountService.add(account);
-        assertTrue(1 == rows);
+
+        assertEquals(1, rows);
     }
 
     @Test
@@ -41,14 +42,15 @@ class AccountServiceImplTest {
     void updateById() {
         final String replaceName = "newName";
         Account account = new Account();
-        account.setId(1);
+        account.setId(1L);
         account.setName(replaceName);
 
         int rows = accountService.update(account);
-        assertTrue(1 == rows);
+        assertEquals(1, rows);
 
         account = accountService.query(account.getId());
-        assertTrue(account.getName().equals(replaceName));
+
+        assertEquals(replaceName, account.getName());
     }
 
     @Test
@@ -59,10 +61,11 @@ class AccountServiceImplTest {
         account.setName(newName);
 
         int rows = accountService.updateByCondition(newName);
-        assertTrue(2 == rows);
+        assertEquals(2, rows);
 
         List<Account> accounts = accountService.query(account);
-        assertTrue(2 == accounts.size());
+
+        assertEquals(2, accounts.size());
     }
 
     @Test
@@ -70,7 +73,7 @@ class AccountServiceImplTest {
     void queryAll() {
         List<Account> accounts = accountService.queryAll();
 
-        assertTrue(2 == accounts.size());
+        assertEquals(2, accounts.size());
     }
 
     @Test
@@ -78,8 +81,9 @@ class AccountServiceImplTest {
     void queryPageHelper() {
         final int pageNum = 2, pageSize = 1;
         List<Account> accounts = accountService.queryPageHelper(pageNum, pageSize);
-        assertTrue(1 == accounts.size());
-        assertTrue(2 == accounts.get(0).getId());
+
+        assertEquals(1, accounts.size());
+        assertEquals(2, accounts.get(0).getId());
     }
 
     @Test
@@ -90,17 +94,18 @@ class AccountServiceImplTest {
         account.setName(name);
 
         List<Account> accounts = accountService.query(account);
-        assertTrue(1 == accounts.size());
-        assertTrue(accounts.get(0).getName().equals(name));
+
+        assertEquals(1, accounts.size());
+        assertEquals(name, accounts.get(0).getName());
     }
 
     @Test
     @DisplayName("should delete a row from database, where id is '1', return number of rows affected")
     void deleteById() {
-        final Integer id = 1;
+        final Long id = 1L;
         int rows = accountService.delete(id);
 
-        assertTrue(1 == rows);
+        assertEquals(1, rows);
     }
 
     @Test
@@ -112,6 +117,6 @@ class AccountServiceImplTest {
 
         int rows = accountService.delete(account);
 
-        assertTrue(1 == rows);
+        assertEquals(1, rows);
     }
 }

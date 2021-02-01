@@ -2,7 +2,7 @@ package com.github.admin.service.impl;
 
 import com.github.admin.mapper.AccountDynamicSqlSupport;
 import com.github.admin.mapper.AccountMapper;
-import com.github.admin.module.Account;
+import com.github.admin.model.Account;
 import com.github.admin.service.AccountService;
 import com.github.pagehelper.PageHelper;
 import org.mybatis.dynamic.sql.SqlBuilder;
@@ -20,7 +20,7 @@ import static org.mybatis.dynamic.sql.SqlBuilder.*;
  * 单表查询
  *
  * @version v0.1
- * @Autheror wanglei
+ * @author wanglei
  */
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -32,22 +32,12 @@ public class AccountServiceImpl implements AccountService {
         return accountMapper.insert(account);
     }
 
-    /**
-     * use SelectDSLCompleter, for simple update
-     * @param account
-     * @return
-     */
     @Override
     public int update(Account account) {
         return accountMapper.update(c -> c.set(AccountDynamicSqlSupport.name).equalTo(account.getName())
                 .where(AccountDynamicSqlSupport.id, isEqualTo(account.getId())));
     }
 
-    /**
-     * use statementProvider,
-     * @param newName
-     * @return
-     */
     @Override
     public int updateByCondition(String newName) {
         UpdateStatementProvider updateStatement = SqlBuilder.update(AccountDynamicSqlSupport.account)
@@ -59,18 +49,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public List<Account> queryAll() {
-        List<Account> accounts = accountMapper.select(c -> c);
-
-        return accounts;
+        return accountMapper.select(c -> c);
     }
 
     @Override
     public List<Account> queryPageHelper(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
 
-        List<Account> accounts = accountMapper.select(c -> c);
-
-        return accounts;
+        return accountMapper.select(c -> c);
     }
 
     @Override
@@ -78,19 +64,16 @@ public class AccountServiceImpl implements AccountService {
         return accountMapper.select(c -> c.where(AccountDynamicSqlSupport.name, isLike("%" + account.getName())));
     }
 
-    /**
-     * @param id
-     * @return Null Account
-     */
     @Override
-    public Account query(Integer id) {
+    public Account query(Long id) {
+
         Optional<Account> account = accountMapper.selectOne(c -> c.where(AccountDynamicSqlSupport.id, isEqualTo(id)));
 
         return account.orElseGet(Account::new);
     }
 
     @Override
-    public int delete(Integer id) {
+    public int delete(Long id) {
         return accountMapper.delete(c -> c.where(AccountDynamicSqlSupport.id, isEqualTo(id)));
     }
 

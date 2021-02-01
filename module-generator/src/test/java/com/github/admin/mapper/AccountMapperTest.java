@@ -1,18 +1,16 @@
 package com.github.admin.mapper;
 
-import com.github.admin.module.Account;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 
 import javax.annotation.Resource;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @version v0.1
- * @Autheror wanglei
+ * @author wanglei
  */
 @MybatisTest
 //@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -24,6 +22,6 @@ class AccountMapperTest {
     @Test
     @DisplayName("should return all accounts success from mapper")
     void queryAll() {
-        assertTrue(accountMapper.select(c -> c).size() == 2);
+        assertEquals(2, accountMapper.select(c -> c).size());
     }
 }
