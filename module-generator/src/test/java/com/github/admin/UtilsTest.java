@@ -26,19 +26,25 @@ class UtilsTest {
     @Test
     void getRuleByStartDate() {
         List<RefundRule> rules = new ArrayList<>();
-        rules.add(new RefundRule(5, 2, 999999999, 100, LocalTime.of(0, 0, 0)));
-//        rules.add(new RefundRule(5, 6, 144, 50, null));
-//        rules.add(new RefundRule(5, 6, 264, 80, null));
-//        rules.add(new RefundRule(5, 6, 480, 100, null));
+        rules.add(new RefundRule(3, 3, 1, 100, LocalTime.of(0, 0, 0)));
+        rules.add(new RefundRule(1, 3, 2, 80, LocalTime.of(0, 0, 0)));
+        rules.add(new RefundRule(3, 3, 999999, 90, LocalTime.of(0, 0, 0)));
 
-        LocalDate startDate = LocalDate.of(2021, Month.APRIL, 25);
-        LocalTime startTime = LocalTime.of(0, 0);
-        LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
 
+        LocalDateTime startDateTime = LocalDateTime.of(2020, 02, 04, 11, 13, 00);
+        RefundRule rule = getMatchRule(startDateTime, rules);
+        System.out.println(rule);
+    }
+
+    private RefundRule getMatchRule(LocalDateTime startDateTime, List<RefundRule> rules) {
         RefundRule currentRule = null;
-        for (RefundRule rule : rules) {
+
+        RefundRule rule = null;
+        for (int i = 0; i < rules.size(); i++) {
+            rule = rules.get(i);
+
             if (null != rule.getEndTime()) {
-                LocalDateTime ruleTime = LocalDateTime.of(startDate.plusDays(-(rule.getTimeToLeave() / 24)), rule.getEndTime()); // 减1天,指定的endtime时间
+                LocalDateTime ruleTime = LocalDateTime.of(startDateTime.toLocalDate().plusDays(-(rule.getTimeToLeave() / 24)), rule.getEndTime());
                 if (LocalDateTime.now().compareTo(ruleTime) >= 0) {
                     currentRule = rule;
                     break;
@@ -50,25 +56,12 @@ class UtilsTest {
                 break;
             }
         }
-        System.out.println(currentRule);
 
-    }
+        if (null == currentRule) {
+            throw new RuntimeException("未找到匹配的退款规则！");
+        }
 
-    @Test
-    void testLocalTimeNull() {
-//        t();
-//        String str = "SaobeiPay---返回报文:{\"end_time\":\"20210122112427\",\"merchant_name\":\"成都柠檬旅游资源开发有限公司\",\"merchant_no\":\"865105962000002\",\"out_refund_no\":\"122480286011021012211242707297\",\"out_trade_no\":\"122480284811321012211210206078\",\"pay_type\":\"010\",\"refund_fee\":\"1\",\"result_code\":\"01\",\"return_code\":\"01\",\"return_msg\":\"退款申请成功\",\"terminal_id\":\"12248028\",\"terminal_time\":\"20210122112426\",\"terminal_trace\":\"1083\"}";
-//        new ObjectMapper().readValue(str);
-        LocalDateTime time = LocalDateTime.of(2021, Month.JANUARY, 24, 14,33, 0);
-        LocalDateTime now = LocalDateTime.of(2021, Month.JANUARY, 24, 14,35, 0);
-        time = time.plusMinutes(1);
-        System.out.println(now.isAfter(time));
-
-    }
-
-    void t() {
-        RefundRule rule = null;
-        Optional.ofNullable(rule).orElseThrow(() -> new RuntimeException("未找到匹配的规则！"));
+        return currentRule;
     }
 
     class RefundRule {
